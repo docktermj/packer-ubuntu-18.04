@@ -49,15 +49,15 @@ make virtualbox-iso
 
 1. Choose VMX file
     1. VMware Workstation > File > Open...
-        1. Navigate to `.../packer-ubuntu-18.01/output-vmware-iso-nnnnnnnnnn/`
-        1. Choose `packer-ubuntu-18.01-nnnnnnnnnn.vmx`
+        1. Navigate to `.../packer-ubuntu-18.04/output-vmware-iso-nnnnnnnnnn/`
+        1. Choose `packer-ubuntu-18.04-nnnnnnnnnn.vmx`
 1. Optional: Change networking
-    1. Navigate to VMware Workstation > My Computer > packer-ubuntu-18.01-nnnnnnnnnn
-    1. Right click on "packer-ubuntu-18.01-nnnnnnnnnn" and choose "Settings"
+    1. Navigate to VMware Workstation > My Computer > packer-ubuntu-18.04-nnnnnnnnnn
+    1. Right click on "packer-ubuntu-18.04-nnnnnnnnnn" and choose "Settings"
     1. Choose "Network Adapter" > "Network Connection" > :radio_button: Bridged: Connected directly to the physical network
     1. Click "Save"
 1. Run image
-    1. Choose VMware Workstation > My Computer > packer-ubuntu-18.01-nnnnnnnnnn
+    1. Choose VMware Workstation > My Computer > packer-ubuntu-18.04-nnnnnnnnnn
     1. Click "Start up this guest operating system"
 1. Username: vagrant  Password: vagrant
 
@@ -66,7 +66,7 @@ make virtualbox-iso
 ### Add to library
 
 ```console
-vagrant box add --name="packer-ubuntu-18.01-virtualbox" ./packer-ubuntu-18.01-virtualbox-nnnnnnnnnn.box
+vagrant box add --name="packer-ubuntu-18.04-virtualbox" ./packer-ubuntu-18.04-virtualbox-nnnnnnnnnn.box
 ```
 
 ### Run
@@ -75,10 +75,10 @@ An example of how to run in a new directory.
 
 #### Specify directory
 
-In this example the `/tmp/packer-ubuntu-18.01` directory is used.
+In this example the `/tmp/packer-ubuntu-18.04` directory is used.
 
 ```console
-export PACKER_UBUNTU_1801=/tmp/packer-ubuntu-18.01
+export PACKER_UBUNTU_1804=/tmp/packer-ubuntu-18.04
 ```
 
 #### Initialize directory
@@ -86,35 +86,35 @@ export PACKER_UBUNTU_1801=/tmp/packer-ubuntu-18.01
 Back up an old directory and initialize new directory with Vagrant image.
 
 ```console
-mv ${PACKER_UBUNTU_1801} ${PACKER_UBUNTU_1801}.$(date +%s)
-mkdir ${PACKER_UBUNTU_1801}
-cd ${PACKER_UBUNTU_1801}
-vagrant init packer-ubuntu-18.01-virtualbox
+mv ${PACKER_UBUNTU_1804} ${PACKER_UBUNTU_1804}.$(date +%s)
+mkdir ${PACKER_UBUNTU_1804}
+cd ${PACKER_UBUNTU_1804}
+vagrant init packer-ubuntu-18.04-virtualbox
 ```
 
 #### Enable remote login
 
 Modify Vagrantfile to allow remote login by
-uncommenting `config.vm.network` in `${PACKER_UBUNTU_1801}/Vagrantfile`.
+uncommenting `config.vm.network` in `${PACKER_UBUNTU_1804}/Vagrantfile`.
 Example:
 
 ```console
 sed -i.$(date +'%s') \
   -e 's/# config.vm.network \"public_network\"/config.vm.network \"public_network\"/g' \
-  ${PACKER_UBUNTU_1801}/Vagrantfile
+  ${PACKER_UBUNTU_1804}/Vagrantfile
 ```
 
 #### Start guest machine
 
 ```console
-cd ${PACKER_UBUNTU_1801}
+cd ${PACKER_UBUNTU_1804}
 vagrant up
 ```
 
 ### Login to guest machine
 
 ```console
-cd ${PACKER_UBUNTU_1801}
+cd ${PACKER_UBUNTU_1804}
 vagrant ssh
 ```
 
@@ -141,7 +141,7 @@ Password: vagrant
 To remove Vagrant image, on host machine:
 
 ```console
-vagrant box remove packer-ubuntu-18.01-virtualbox
+vagrant box remove packer-ubuntu-18.04-virtualbox
 ```
 
 ## References
